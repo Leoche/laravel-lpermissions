@@ -9,10 +9,12 @@ class LPermissionsServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->loadMigrationsFrom(__DIR__ . '/../../migrations/');
-		$this->mergeConfigFrom(__DIR__.'/../../config/lpermissions.php', 'lpermissions');
+		$this->publishes([
+            __DIR__ . '/../../config/lpermissions.php' => config_path('lpermissions.php'),
+        ], 'config');
 	}
 	public function register()
 	{
-		
+		$this->mergeConfigFrom(__DIR__.'/../../config/lpermissions.php', 'lpermissions');
 	}
 }
