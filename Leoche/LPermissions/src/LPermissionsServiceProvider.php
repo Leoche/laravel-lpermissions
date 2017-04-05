@@ -1,10 +1,11 @@
 <?php 
-namespace LPermissions;
+namespace Leoche\LPermissions;
 
 use Illuminate\Support\ServiceProvider;
 
-class LPermissionsServiceProvider
+class LPermissionsServiceProvider extends ServiceProvider
 {
+	protected $defer = false;
 	public function boot()
 	{
 
