@@ -1,0 +1,16 @@
+{
+    "name": "leoche/laravel-lpermissions",
+    "description": "Users Roles & Permissions for routes",
+    "type": "laravel-package",
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leoche",
+            "email": "leodesigaux@gmail.com"
+        }
+    ]
+}
