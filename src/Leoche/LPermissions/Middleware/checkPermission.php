@@ -1,5 +1,4 @@
 <?php
-
 namespace Leoche\LPermissions\Middleware;
 
 use Closure;
@@ -16,10 +15,8 @@ class CheckPermission
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->user()->hasPermission($request))
-        {
-            if ($request->isJson() || $request->wantsJson())
-            {
+        if (!$request->user()->hasPermission($request)) {
+            if ($request->isJson() || $request->wantsJson()) {
                 return response()->json([
                     'error' => [
                     'status_code' => 401,
@@ -32,5 +29,4 @@ class CheckPermission
         }
         return $next($request);
     }
-
 }

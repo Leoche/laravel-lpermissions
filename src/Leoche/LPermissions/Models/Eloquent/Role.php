@@ -2,11 +2,11 @@
 namespace Leoche\LPermissions\Models\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
+
 //use Leoche\LPermissions\Traits\HasPermission;
 
 class Role extends Model
 {
-
     protected $fillable = ['name', 'slug'];
 
     protected $table = 'roles';

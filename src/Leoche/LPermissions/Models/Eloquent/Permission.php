@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-   // use HasPermission;
+    // use HasPermission;
     /**
      * The attributes that are fillable via mass assignment.
      *
