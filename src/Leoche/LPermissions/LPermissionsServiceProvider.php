@@ -12,6 +12,19 @@ class LPermissionsServiceProvider extends ServiceProvider
 		$this->publishes([
             __DIR__ . '/../../config/lpermissions.php' => config_path('lpermissions.php'),
         ], 'config');
+        Blade::directive('role', function ($expression) {
+            return "<?php if (Auth::check() && Auth::user()->hasRole({$expression})): ?>";
+        });
+        Blade::directive('endrole', function () {
+            return "<?php endif; ?>";
+        });
+        // permission
+        Blade::directive('permission', function ($expression) {
+            return "<?php if (Auth::check() && Auth::user()->hasPermision({$expression})): ?>";
+        });
+        Blade::directive('endpermission', function () {
+            return "<?php endif; ?>";
+        });
 	}
 	public function register()
 	{
