@@ -1,6 +1,7 @@
 <?php 
 namespace Leoche\LPermissions;
 
+use Blade;
 use Illuminate\Support\ServiceProvider;
 
 class LPermissionsServiceProvider extends ServiceProvider
@@ -14,7 +15,8 @@ class LPermissionsServiceProvider extends ServiceProvider
         ], 'config');
         $this->registerBlades();
     }
-    public function registerBlades(){
+    public function registerBlades()
+    {
         Blade::directive('role', function ($expression) {
             return "<?php if (Auth::check() && Auth::user()->hasRole({$expression})): ?>";
         });
@@ -22,7 +24,7 @@ class LPermissionsServiceProvider extends ServiceProvider
             return "<?php endif; ?>";
         });
         Blade::directive('permission', function ($expression) {
-            return "<?php if (Auth::check() && Auth::user()->hasPermision({$expression})): ?>";
+            return "<?php if (Auth::check() && Auth::user()->hasPermission({$expression})): ?>";
         });
         Blade::directive('endpermission', function () {
             return "<?php endif; ?>";

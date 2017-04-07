@@ -15,7 +15,7 @@ class CheckPermission
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->user()->hasPermission($request)) {
+        if (!$request->user() || !$request->user()->hasPermission($request->path(), $request->method())) {
             if ($request->isJson() || $request->wantsJson()) {
                 return response()->json([
                     'error' => [
