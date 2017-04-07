@@ -24,7 +24,8 @@ class LPermissionsServiceProvider extends ServiceProvider
             return "<?php endif; ?>";
         });
         Blade::directive('permission', function ($expression) {
-            return "<?php if (Auth::check() && Auth::user()->hasPermission({$expression})): ?>";
+            $args = explode(',', preg_replace("/[\(\)\"\']/", '', $expression), 2);
+            return "<?php if (Auth::check() && Auth::user()->hasPermission('{$args[0]}','{$args[1]}')): ?>";
         });
         Blade::directive('endpermission', function () {
             return "<?php endif; ?>";

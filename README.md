@@ -107,6 +107,12 @@ In your blades view you can use directives to show something (eg: links, infos) 
  //Only shown to users who can access to admin dashboard
 @endpermission
 ...
+@permission('admin/posts','post')
+ //Only shown to users who can access to admin posts with method POST
+@endpermission
+...
+
+...
 @role('moderator')
  //Only shown to moderators role
 @endrole
