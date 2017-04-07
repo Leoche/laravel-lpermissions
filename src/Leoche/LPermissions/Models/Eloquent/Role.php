@@ -16,6 +16,10 @@ class Role extends Model
     {
         return $this->hasMany(config('auth.providers.users.model', config('auth.model')))->withTimestamps();
     }
+    public function parent_role()
+    {
+        return $this->hasOne(config('lpermissions.role'), "inherit_id");
+    }
 
     public function getPermissions()
     {

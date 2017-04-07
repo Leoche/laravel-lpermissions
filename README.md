@@ -13,6 +13,7 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 * [Routes Usage](#routes)
 * [Blades Usage](#blades)
 * [Example](#example)
+* [Todo](#todo)
 
 
 ### <a name="requirements"></a>Requirements
@@ -136,10 +137,10 @@ Users Table
 
 Roles Table
 
-| id | name    |
-| -- |-------- |
-| 1  | Admin   |
-| 2  | Member  |
+| id | inherit_id | name    |
+| -- |--------    |-------- |
+| 1  | 1          | Admin   |
+| 2  | 0          | Member  |
 
 
 Permissions Table
@@ -178,6 +179,13 @@ Everyone can see the homepage
 
 Only mike can view /secret
 
-Lisa can do anything in /admin/* (Ex: POST /admin/posts)
+Lisa can do anything in /admin/* and view account pages (inherit from members)
 
 John can only view accounts pages
+
+
+## <a name="todo"></a>Todo
+
+- [ ] Function to assign/revoke role to users
+- [ ] Function to assign/revoke permission to role
+- [ ] Function to inherit role to role
