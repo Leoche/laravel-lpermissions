@@ -110,6 +110,12 @@ In your blades view you can use directives to show something (eg: links, infos) 
 @role('moderator')
  //Only shown to moderators role
 @endrole
+...
+@role('*')
+ //Has any roles
+@else
+ //Has no role (Eg: role_id=0)
+@endrole
 ```
 
 ## <a name="example"></a>Example

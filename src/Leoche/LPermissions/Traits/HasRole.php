@@ -29,7 +29,7 @@ trait HasRole
     }
     public function hasRole($slug)
     {
-        return $this->getRole->slug == $slug;
+        return ($slug == "*" || $this->getRole->slug == $slug);
     }
 
     public function permissions()
