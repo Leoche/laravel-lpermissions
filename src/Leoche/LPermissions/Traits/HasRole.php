@@ -52,19 +52,8 @@ trait HasRole
         if ($routePerm[0] == "/") {
             $routePerm = substr($routePerm, 1);
         }
-        if ($this->getRole) {
-            $roles_permissions = $this->getRole->getPermissions;
-            foreach ($roles_permissions as $perm) {
-                $route = $perm->route;
-                if ($route[0] == "/") {
-                    $route = substr($route, 1);
-                }
-                if ($this->isPath($route, $routePerm)) {
-                    if ($perm->method == "*" || strtolower($method) == strtolower($perm->method)) {
-                        return true;
-                    }
-                }
-            }
+        if ($this->hasPermissionWithRole($this->getRole, $routePerm)) {
+            return true;
         }
         $users_permissions = $this->getPermissions;
         foreach ($users_permissions as $perm) {
@@ -80,8 +69,38 @@ trait HasRole
         }
         return false;
     }
+    public function hasPermissionWithRole($role, $routePerm)
+    {
+        $roles_permissions = $role->getPermissions;
+        foreach ($roles_permissions as $perm) {
+            $route = $perm->route;
+            if ($route[0] == "/") {
+                $route = substr($route, 1);
+            }
+            if ($this->isPath($route, $routePerm)) {
+                if ($perm->method == "*" || strtolower($method) == strtolower($perm->method)) {
+                    return true;
+                }
+            }
+        }
+        if ($role->parent_role) {
+            return $this->hasPermissionWithRole($role->parent_role, $routePerm);
+        }
+        return false;
+    }
     public function isPath($pattern, $path)
     {
-        return Str::is($pattern, rawurldecode($path));
+        $value = rawurldecode($path);
+        if ($pattern == $value) {
+            return true;
+        }
+        $pattern = preg_quote($pattern, '#');
+        $pattern = str_replace('\*', '(.*?)', $pattern);
+        $pattern = str_replace('\:number', '(\d*?)', $pattern);
+        $pattern = str_replace('\:alpha', '([A-z]*?)', $pattern);
+        $pattern = str_replace('\:alphanum', '([A-z0-9]*?)', $pattern);
+        $pattern = str_replace('\:slug', '([A-z0-9\-\_]*?)', $pattern);
+
+        return (bool) preg_match('#^'.$pattern.'\z#u', $value);
     }
 }

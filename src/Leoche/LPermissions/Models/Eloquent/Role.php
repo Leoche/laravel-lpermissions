@@ -36,4 +36,5 @@ class Role extends Model
     {
         return $this->hasMany(config('lpermissions.permission'));
     }
+    
 }
