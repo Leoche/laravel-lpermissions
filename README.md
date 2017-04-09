@@ -91,8 +91,18 @@ Assign or Remove a role
 $user = User::find(1);
 $user->setRole(2); // with id
 //OR
-$user->setRole("Premium"); // with slug/name
+$user->setRole("Admin"); // with slug/name
 $user->removeRole();
+
+```
+Assign or remove an inherit role to a role
+
+```php
+$role = Role::find(1);
+$role->setInheritRole(2); //with id
+//OR
+$role->setInheritRole("Admin");
+$role->removeInheritRole();
 
 ```
 
@@ -211,4 +221,4 @@ John can only view accounts pages
 
 - [x] Function to assign/revoke role to users
 - [ ] Function to assign/revoke permission to role
-- [ ] Function to inherit role to role
+- [x] Function to inherit role to role
