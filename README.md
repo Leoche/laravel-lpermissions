@@ -10,6 +10,7 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 ### Table of Contents
 * [Requirements](#requirements)
 * [Installation](#installation)
+* [Methods Usage](#methods)
 * [Routes Usage](#routes)
 * [Blades Usage](#blades)
 * [Example](#example)
@@ -73,6 +74,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 use Authenticatable, HasRole;
 }
 ```
+## <a name="methods"></a>Methods Usage
+
+#### Roles
+
+Creating Roles
+```
+$role = new Role();
+$role->name = 'Admin';
+//The slug will be automatically generated from the role name
+$role->save();
+```
+Assign or Remove a role
+
+```
+$user = User::find(1);
+$user->setRole(2); // with id
+//OR
+$user->setRole("Premium"); // with slug/name
+$user->removeRole();
+
+```
+
 ## <a name="routes"></a>Routes Usage
 
 You just have to specifythe middleware to the group route. It will check for permission and abort 401 if unauthorised

@@ -17,8 +17,8 @@ class CreatePermsTable extends Migration
             $table->increments('id');
             $table->string('route')->index();
             $table->string('method')->index();
-            $table->integer('role_id')->default(0)->unsigned()->index()->foreign()->references("id")->on("roles");
-            $table->integer('user_id')->default(0)->unsigned()->index()->foreign()->references("id")->on("users");
+            $table->integer('role_id')->nullable()->unsigned()->index()->foreign()->references("id")->on("roles");
+            $table->integer('user_id')->nullable()->unsigned()->index()->foreign()->references("id")->on("users");
             $table->timestamps();
         });
     }

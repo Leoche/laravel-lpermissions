@@ -29,7 +29,7 @@ class Role extends Model
             function () {
                 return $this->permissions();
             }
-        );
+            );
         return $this->permissions();
     }
     public function permissions()
@@ -37,4 +37,9 @@ class Role extends Model
         return $this->hasMany(config('lpermissions.permission'));
     }
     
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
 }
