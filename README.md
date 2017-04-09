@@ -47,7 +47,7 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 ],
 ```
 
-3. Publish the package migrations to your application and run these with `php artisan migrate.
+3. Publish the package migrations to your application and run these with `php artisan migrate`.
 
 ```
 $ php artisan vendor:publish --provider="Leoche\LPermissions\LPermissionsServiceProvider"
@@ -78,8 +78,8 @@ use Authenticatable, HasRole;
 
 #### Roles
 
-Creating Roles
-```
+Creating roles
+```php
 $role = new Role();
 $role->name = 'Admin';
 //The slug will be automatically generated from the role name
@@ -87,7 +87,7 @@ $role->save();
 ```
 Assign or Remove a role
 
-```
+```php
 $user = User::find(1);
 $user->setRole(2); // with id
 //OR
@@ -209,6 +209,6 @@ John can only view accounts pages
 
 ## <a name="todo"></a>Todo
 
-- [ ] Function to assign/revoke role to users
+- [x] Function to assign/revoke role to users
 - [ ] Function to assign/revoke permission to role
 - [ ] Function to inherit role to role
