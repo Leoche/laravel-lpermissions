@@ -38,11 +38,10 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 
 ```php
 'providers' => [
-
-'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-'Illuminate\Auth\AuthServiceProvider',
+Illuminate\Validation\ValidationServiceProvider::class,
+Illuminate\View\ViewServiceProvider::class,
 ...
-'Leoche\LPermissions\LPermissionsServiceProvider',
+Leoche\LPermissions\LPermissionsServiceProvider::class,
 
 ],
 ```

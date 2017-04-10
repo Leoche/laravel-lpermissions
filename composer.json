@@ -12,5 +12,10 @@
             "name": "Leoche",
             "email": "leodesigaux@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Leoche\\LPermissions\\": "src/Leoche/LPermissions"
+        }
+    },
 }
