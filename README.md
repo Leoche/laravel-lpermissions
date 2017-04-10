@@ -124,6 +124,26 @@ $user->getRole->removeAllPermissions(); //delete all permissions of user's role
 $role = Role::find(1);
 $role->removeAllPermissions();
 ```
+Notes : LPermissions parse permissions path as:
+
+| Given Path                 | Parsed path               |
+|--------------------------- |---------------------------|
+| home/                      | home                      |
+| /blog/:slug                | blog/:slug                |
+| blog/:alpha/               | blog/:alpha               |
+| /blog/:number/comments/    | blog/:number/comments     |
+
+
+| Given keys | Regex             |
+|------------|------------------ |
+| `*`          | (.*?)             |
+| `:number`    | (\d*?)            |
+| `:alpha`     | ([A-z]*?)         |
+| `:alphanum`  | ([A-z0-9]*?)      |
+| `:slug`      | ([A-z0-9\-\_]*?)  |
+
+
+
 
 ## <a name="routes"></a>Routes Usage
 
