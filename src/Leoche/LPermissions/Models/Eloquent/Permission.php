@@ -11,7 +11,7 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['route', 'method'];
+    protected $fillable = ['route', 'method', 'user_id', 'role_id'];
     /**
      * The database table used by the model.
      *

@@ -24,7 +24,7 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 
 ## <a name="installation"></a>Installation
 
-1. Require the package in your `composer.json` and update your dependency with `composer update`:
+**1.** Require the package in your `composer.json` and update your dependency with `composer update`:
 
 ```
 "require": {
@@ -34,7 +34,7 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 },
 ```
 
-2. Add the package to your application service providers in `config/app.php`.
+**2.** Add the package to your application service providers in `config/app.php`.
 
 ```php
 'providers' => [
@@ -47,13 +47,13 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 ],
 ```
 
-3. Publish the package migrations to your application and run these with `php artisan migrate`.
+**3.** Publish the package migrations to your application and run these with `php artisan migrate`.
 
 ```
 $ php artisan vendor:publish --provider="Leoche\LPermissions\LPermissionsServiceProvider"
 ```
 
-4. Add the middleware to your `app/Http/Kernel.php`.
+**4.** Add the middleware to your `app/Http/Kernel.php`.
 
 ```php
 protected $routeMiddleware = [
@@ -64,7 +64,7 @@ protected $routeMiddleware = [
 ];
 ```
 
-5. Add the HasRole trait to your `User` model.
+**5.** Add the HasRole trait to your `User` model.
 
 ```php
 use Leoche\LPermissions\Traits\HasRole;
@@ -104,6 +104,25 @@ $role->setInheritRole(2); //with id
 $role->setInheritRole("Admin");
 $role->removeInheritRole();
 
+```
+Assign or remove a permission to a role or a user
+
+```php
+$role = Role::find(1);
+$role->setPermission("admin/*", "*");
+$role->removePermission("/admin/*", "*");
+
+$user = User::find(1);
+$user->setPermission("secretpage", "GET");
+$user->removePermission("secretpage", "GET");
+
+
+$user = User::find(1);
+$user->removeAllPermissions(); //delete all permissions of user
+$user->getRole->removeAllPermissions(); //delete all permissions of user's role
+
+$role = Role::find(1);
+$role->removeAllPermissions();
 ```
 
 ## <a name="routes"></a>Routes Usage
@@ -220,5 +239,5 @@ John can only view accounts pages
 ## <a name="todo"></a>Todo
 
 - [x] Function to assign/revoke role to users
-- [ ] Function to assign/revoke permission to role
+- [x] Function to assign/revoke permission to role
 - [x] Function to inherit role to role
