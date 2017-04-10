@@ -29,7 +29,7 @@ Laravel LPermissions adds roles and permissions to Auth Laravel 5.3. Protect you
 ```
 "require": {
 ...
-"leoche/laravel-lpermissions": "~1.0",
+"leoche/laravel-lpermissions": "1.0",
 ...
 },
 ```
