@@ -17,5 +17,5 @@
         "psr-4": {
             "Leoche\\LPermissions\\": "src/Leoche/LPermissions"
         }
-    },
+    }
 }
