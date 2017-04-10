@@ -58,7 +58,7 @@ $ php artisan vendor:publish --provider="Leoche\LPermissions\LPermissionsService
 protected $routeMiddleware = [
 
 ....
-'permission' => 'Leoche\LPermissions\Middleware\checkPermission',
+'permission' => \Leoche\LPermissions\Middleware\checkPermission::class,
 
 ];
 ```
