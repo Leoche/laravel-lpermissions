@@ -13,7 +13,7 @@ trait HasRoleInherit
 {
     public function parent_role()
     {
-        return $this->hasOne(config('lpermissions.role'), "inherit_id");
+        return $this->belongsTo(config('lpermissions.role'), "inherit_id");
     }
     public function getParentRole()
     {
@@ -28,7 +28,7 @@ trait HasRoleInherit
     }
     public function child_role()
     {
-        return $this->belongsTo(config('lpermissions.role'), "inherit_id");
+        return $this->hasMany(config('lpermissions.role'), "inherit_id");
     }
     public function getChildsRole()
     {
