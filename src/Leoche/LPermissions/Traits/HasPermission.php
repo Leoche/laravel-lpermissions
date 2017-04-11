@@ -59,8 +59,8 @@ trait HasPermission
                 }
             }
         }
-        if ($role->parent_role) {
-            return $this->hasPermissionWithRole($role->parent_role, $routePerm);
+        if ($role->getParentRole) {
+            return $this->hasPermissionWithRole($role->getParentRole, $routePerm);
         }
         return false;
     }
