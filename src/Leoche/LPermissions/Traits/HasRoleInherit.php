@@ -15,6 +15,32 @@ trait HasRoleInherit
     {
         return $this->hasOne(config('lpermissions.role'), "inherit_id");
     }
+    public function getParentRole()
+    {
+        $this_role = \Cache::remember(
+            'lp.getParentRoleById_'.$this->id,
+            config('lpermissions.cacheMinutes'),
+            function () {
+                return $this->parent_role();
+            }
+        );
+        return $this->parent_role();
+    }
+    public function child_role()
+    {
+        return $this->belongsTo(config('lpermissions.role'), "inherit_id");
+    }
+    public function getChildsRole()
+    {
+        $this_role = \Cache::remember(
+            'lp.getChildRoleById_'.$this->id,
+            config('lpermissions.cacheMinutes'),
+            function () {
+                return $this->child_role();
+            }
+        );
+        return $this->child_role();
+    }
     public function setInheritRole($role)
     {
         $roleId = $this->parseRoleId($role);
