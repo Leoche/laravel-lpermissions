@@ -85,8 +85,14 @@ trait HasPermission
     {
         $model = config('lpermissions.permission', 'Leoche\LPermissions\Models\Eloquent\Permission');
         $permId = $this->parsePermissionId($route, $method);
-    	$perm = (new $model)->find($permId);
-    	$perm->delete();
+        $perm = (new $model)->find($permId);
+        $perm->delete();
+    }
+    public function removePermissionById($id)
+    {
+        $model = config('lpermissions.permission', 'Leoche\LPermissions\Models\Eloquent\Permission');
+        $perm = (new $model)->find($id);
+        $perm->delete();
     }
     public function removeAllPermissions()
     {
