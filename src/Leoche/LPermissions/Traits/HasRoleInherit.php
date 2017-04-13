@@ -2,7 +2,7 @@
 namespace Leoche\LPermissions\Traits;
 
 /**
- * Class HasRole
+ * Class HasRoleInherit
  * @package Leoche\LPermissions\Traits
  *
  * @method static Builder|Collection|\Eloquent role($role, $column = null)
@@ -17,14 +17,13 @@ trait HasRoleInherit
     }
     public function getParentRole()
     {
-        $this_role = \Cache::remember(
+        return \Cache::remember(
             'lp.getParentRoleById_'.$this->id,
             config('lpermissions.cacheMinutes'),
             function () {
                 return $this->parent_role();
             }
         );
-        return $this->parent_role();
     }
     public function child_role()
     {
@@ -32,14 +31,13 @@ trait HasRoleInherit
     }
     public function getChildsRole()
     {
-        $this_role = \Cache::remember(
+        return \Cache::remember(
             'lp.getChildRoleById_'.$this->id,
             config('lpermissions.cacheMinutes'),
             function () {
                 return $this->child_role();
             }
         );
-        return $this->child_role();
     }
     public function setInheritRole($role)
     {

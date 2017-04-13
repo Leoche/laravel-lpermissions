@@ -17,24 +17,24 @@ trait HasPermission
     }
     public function getPermissions()
     {
-        $this_role = \Cache::remember(
+        return \Cache::remember(
             'lp.getRolePermissionsById_'.$this->id,
             config('lpermissions.cacheMinutes'),
             function () {
                 return $this->permissions();
             }
         );
-        return $this->permissions();
     }
     public function getPermissionsWithRole()
     {
         $perms = $this->getPermissions;
         $allperms = $perms->merge([]);
     }
+
     public function hasPermission($routePerm, $method = "*")
     {
         $routePerm = $this->clearPath($routePerm);
-        if ($this->getRole && $this->hasPermissionWithRole($this->getRole, $routePerm)) {
+        if ($this->getRole && $this->hasPermissionWithRole($this->getRole, $routePerm, $method)) {
             return true;
         }
         $users_permissions = $this->getPermissions;
@@ -48,7 +48,7 @@ trait HasPermission
         }
         return false;
     }
-    public function hasPermissionWithRole($role, $routePerm)
+    public function hasPermissionWithRole($role, $routePerm, $method)
     {
         $roles_permissions = $role->getPermissions;
         foreach ($roles_permissions as $perm) {

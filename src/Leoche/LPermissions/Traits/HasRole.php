@@ -19,14 +19,13 @@ trait HasRole
     }
     public function getRole()
     {
-        $this_role = \Cache::remember(
+        return \Cache::remember(
             'lp.getRoleById_'.$this->id,
             config('lpermissions.cacheMinutes'),
             function () {
                 return $this->role();
             }
         );
-        return $this->role();
     }
     public function hasRole($slug)
     {
