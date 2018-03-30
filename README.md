@@ -1,5 +1,6 @@
-
-# Leoche/Laravel-LPermissions
+<p align="center">
+<img src="./lpermissions-logo.png">
+</p>
 
 [![Laravel](https://img.shields.io/badge/Laravel-5.3-red.svg?style=flat)](https://laravel.com/docs/5.3)
 [![Source](https://img.shields.io/badge/Source-leoche/lpermissions-green.svg?style=flat)](https://github.com/leoche/laravel-lpermissions/)
